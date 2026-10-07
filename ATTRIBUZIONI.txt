@@ -1,0 +1,11 @@
+FRONTIERE V3.3 — attribuzioni geografiche
+
+geoBoundaries gbOpen — William & Mary geoLab
+Licenza: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://www.geoboundaries.org/
+
+Natural Earth / datasets geo-boundaries-world-110m
+Usato come mappa mondiale di base/fallback.
+Natural Earth è public domain.
+
+La V3.3 non usa GADM come sorgente geografica runtime.
