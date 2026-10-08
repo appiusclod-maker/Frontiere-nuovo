@@ -4,26 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#111827" />
-  <title>Frontiere — V3.3 mobile</title>
+  <title>Frontiere — V3.4 mobile</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Frontiere" />
-  
 </head>
 <body>
   <div id="app" class="app-shell">
     <header class="topbar">
-      <div>
-        <div class="eyebrow">Campagna</div>
-        <h1 id="campaignTitle">Italia — Vita equilibrata</h1>
-      </div>
+      <div><div class="eyebrow">Campagna</div><h1 id="campaignTitle">Italia — Vita equilibrata</h1></div>
       <button id="resetDemoBtn" class="icon-btn" title="Ripristina demo" aria-label="Ripristina demo">↻</button>
     </header>
-
     <main id="view" class="view"></main>
-
     <nav class="bottom-nav" aria-label="Navigazione principale">
       <button data-view="today" class="nav-btn active"><span>✓</span><small>Oggi</small></button>
       <button data-view="fronts" class="nav-btn"><span>⚔</span><small>Fronti</small></button>
@@ -33,129 +27,11 @@
       <button data-view="settings" class="nav-btn"><span>⚙</span><small>Impostazioni</small></button>
     </nav>
   </div>
-
-  <dialog id="objectiveDialog" class="modal">
-    <form method="dialog" id="objectiveForm">
-      <div class="modal-head">
-        <h2 id="objectiveDialogTitle">Nuovo obiettivo</h2>
-        <button value="cancel" class="icon-btn" aria-label="Chiudi">✕</button>
-      </div>
-      <input type="hidden" id="objectiveId" />
-      <label>Nome
-        <input id="objectiveName" required maxlength="80" placeholder="es. Allenamento 60 min" />
-      </label>
-      <label>Fronte
-        <select id="objectiveFront" required></select>
-      </label>
-      <div class="two-col">
-        <label>Valore successo
-          <input id="objectivePlus" type="number" min="1" max="99" value="1" required />
-        </label>
-        <label>Valore fallimento
-          <input id="objectiveMinus" type="number" min="1" max="99" value="1" required />
-        </label>
-      </div>
-      <label>Quando
-        <select id="objectiveScheduleType">
-          <option value="single">In una data precisa</option>
-          <option value="deadline">Entro una scadenza</option>
-          <option value="recurring">Ripetuto</option>
-        </select>
-      </label>
-      <div id="scheduleSingle" class="schedule-panel">
-        <label>Data <input id="objectiveDate" type="date" /></label>
-      </div>
-      <div id="scheduleDeadline" class="schedule-panel" hidden>
-        <div class="two-col">
-          <label>Disponibile dal <input id="objectiveStartDate" type="date" /></label>
-          <label>Scadenza <input id="objectiveDueDate" type="date" /></label>
-        </div>
-        <p class="field-help">Puoi completarlo prima; la penalità scatta solo alla scadenza.</p>
-      </div>
-      <div id="scheduleRecurring" class="schedule-panel" hidden>
-        <div class="two-col">
-          <label>Inizio <input id="objectiveRepeatStart" type="date" /></label>
-          <label>Fine facoltativa <input id="objectiveRepeatEnd" type="date" /></label>
-        </div>
-        <div class="two-col">
-          <label>Ripeti
-            <select id="objectiveRepeatMode">
-              <option value="daily">Ogni giorno</option>
-              <option value="weekly">Giorni della settimana</option>
-              <option value="monthly">Ogni mese</option>
-              <option value="interval">Ogni X giorni</option>
-            </select>
-          </label>
-          <label>Ogni
-            <input id="objectiveRepeatEvery" type="number" min="1" max="365" value="1" />
-          </label>
-        </div>
-        <div id="weekdayPicker" class="weekday-picker" hidden>
-          <label><input type="checkbox" value="1"> Lun</label><label><input type="checkbox" value="2"> Mar</label><label><input type="checkbox" value="3"> Mer</label><label><input type="checkbox" value="4"> Gio</label><label><input type="checkbox" value="5"> Ven</label><label><input type="checkbox" value="6"> Sab</label><label><input type="checkbox" value="0"> Dom</label>
-        </div>
-      </div>
-      <label>Nota facoltativa
-        <textarea id="objectiveNote" rows="2" placeholder="Quantità, durata, dettagli..."></textarea>
-      </label>
-      <div class="modal-actions">
-        <button value="cancel" class="btn secondary">Annulla</button>
-        <button id="saveObjectiveBtn" value="default" class="btn primary">Salva</button>
-      </div>
-    </form>
-  </dialog>
-
-  <dialog id="frontDialog" class="modal">
-    <form method="dialog" id="frontForm">
-      <div class="modal-head">
-        <h2 id="frontDialogTitle">Nuovo fronte</h2>
-        <button value="cancel" class="icon-btn" aria-label="Chiudi">✕</button>
-      </div>
-      <input type="hidden" id="frontId" />
-      <label>Nome
-        <input id="frontName" required maxlength="50" />
-      </label>
-      <div class="two-col">
-        <label>Icona
-          <input id="frontIcon" maxlength="4" value="🎯" />
-        </label>
-        <label>Direzione
-          <select id="frontDirection">
-            <option>Nord</option><option>Nord-est</option><option>Est</option><option>Sud-est</option>
-            <option>Sud</option><option>Sud-ovest</option><option>Ovest</option><option>Nord-ovest</option>
-          </select>
-        </label>
-      </div>
-      <label>Colore
-        <input id="frontColor" type="color" value="#2563eb" />
-      </label>
-      <div class="modal-actions">
-        <button value="cancel" class="btn secondary">Annulla</button>
-        <button value="default" class="btn primary">Salva</button>
-      </div>
-    </form>
-  </dialog>
-
-
-  <dialog id="campaignDialog" class="modal">
-    <form method="dialog" id="campaignForm">
-      <div class="modal-head"><h2>Nuova campagna</h2><button value="cancel" class="icon-btn" aria-label="Chiudi">✕</button></div>
-      <label>Nome campagna <input id="campaignName" maxlength="60" value="Vita equilibrata" /></label>
-      <label>Paese di partenza <select id="campaignCountry"><option>Caricamento Paesi…</option></select></label>
-      <label>Livello amministrativo
-        <select id="campaignAdm"><option value="auto">Automatico consigliato</option><option value="ADM1">Regioni / stati / province principali (ADM1)</option><option value="ADM2">Suddivisioni più piccole (ADM2)</option></select>
-      </label>
-      <div class="field-help">Automatico usa le province in Italia e il primo livello amministrativo negli altri Paesi.</div>
-      <fieldset class="front-preset"><legend>Fronti iniziali</legend><div id="campaignFrontChoices"></div></fieldset>
-      <div class="modal-actions"><button value="cancel" class="btn secondary">Annulla</button><button value="default" class="btn danger">Crea e azzera la partita attuale</button></div>
-    </form>
-  </dialog>
-
+  <dialog id="objectiveDialog" class="modal"><form method="dialog" id="objectiveForm"><div class="modal-head"><h2 id="objectiveDialogTitle">Nuovo obiettivo</h2><button value="cancel" class="icon-btn" aria-label="Chiudi">✕</button></div><input type="hidden" id="objectiveId" /><label>Nome<input id="objectiveName" required maxlength="80" placeholder="es. Allenamento 60 min" /></label><label>Fronte<select id="objectiveFront" required></select></label><div class="two-col"><label>Valore successo<input id="objectivePlus" type="number" min="1" max="99" value="1" required /></label><label>Valore fallimento<input id="objectiveMinus" type="number" min="1" max="99" value="1" required /></label></div><label>Quando<select id="objectiveScheduleType"><option value="single">In una data precisa</option><option value="deadline">Entro una scadenza</option><option value="recurring">Ripetuto</option></select></label><div id="scheduleSingle" class="schedule-panel"><label>Data <input id="objectiveDate" type="date" /></label></div><div id="scheduleDeadline" class="schedule-panel" hidden><div class="two-col"><label>Disponibile dal <input id="objectiveStartDate" type="date" /></label><label>Scadenza <input id="objectiveDueDate" type="date" /></label></div><p class="field-help">Puoi completarlo prima; la penalità scatta solo alla scadenza.</p></div><div id="scheduleRecurring" class="schedule-panel" hidden><div class="two-col"><label>Inizio <input id="objectiveRepeatStart" type="date" /></label><label>Fine facoltativa <input id="objectiveRepeatEnd" type="date" /></label></div><div class="two-col"><label>Ripeti<select id="objectiveRepeatMode"><option value="daily">Ogni giorno</option><option value="weekly">Giorni della settimana</option><option value="monthly">Ogni mese</option><option value="interval">Ogni X giorni</option></select></label><label>Ogni<input id="objectiveRepeatEvery" type="number" min="1" max="365" value="1" /></label></div><div id="weekdayPicker" class="weekday-picker" hidden><label><input type="checkbox" value="1"> Lun</label><label><input type="checkbox" value="2"> Mar</label><label><input type="checkbox" value="3"> Mer</label><label><input type="checkbox" value="4"> Gio</label><label><input type="checkbox" value="5"> Ven</label><label><input type="checkbox" value="6"> Sab</label><label><input type="checkbox" value="0"> Dom</label></div></div><label>Nota facoltativa<textarea id="objectiveNote" rows="2" placeholder="Quantità, durata, dettagli..."></textarea></label><div class="modal-actions"><button value="cancel" class="btn secondary">Annulla</button><button id="saveObjectiveBtn" value="default" class="btn primary">Salva</button></div></form></dialog>
+  <dialog id="frontDialog" class="modal"><form method="dialog" id="frontForm"><div class="modal-head"><h2 id="frontDialogTitle">Nuovo fronte</h2><button value="cancel" class="icon-btn" aria-label="Chiudi">✕</button></div><input type="hidden" id="frontId" /><label>Nome<input id="frontName" required maxlength="50" /></label><div class="two-col"><label>Icona<input id="frontIcon" maxlength="4" value="🎯" /></label><label>Direzione<select id="frontDirection"><option>Nord</option><option>Nord-est</option><option>Est</option><option>Sud-est</option><option>Sud</option><option>Sud-ovest</option><option>Ovest</option><option>Nord-ovest</option></select></label></div><label>Colore<input id="frontColor" type="color" value="#2563eb" /></label><div class="modal-actions"><button value="cancel" class="btn secondary">Annulla</button><button value="default" class="btn primary">Salva</button></div></form></dialog>
+  <dialog id="campaignDialog" class="modal"><form method="dialog" id="campaignForm"><div class="modal-head"><h2>Nuova campagna</h2><button value="cancel" class="icon-btn" aria-label="Chiudi">✕</button></div><label>Nome campagna <input id="campaignName" maxlength="60" value="Vita equilibrata" /></label><label>Paese di partenza <select id="campaignCountry"><option>Caricamento Paesi…</option></select></label><label>Livello amministrativo<select id="campaignAdm"><option value="auto">Automatico consigliato</option><option value="ADM1">Regioni / stati / province principali (ADM1)</option><option value="ADM2">Suddivisioni più piccole (ADM2)</option></select></label><div class="field-help">Automatico usa le province in Italia e il primo livello amministrativo negli altri Paesi.</div><fieldset class="front-preset"><legend>Fronti iniziali</legend><div id="campaignFrontChoices"></div></fieldset><div class="modal-actions"><button value="cancel" class="btn secondary">Annulla</button><button value="default" class="btn danger">Crea e azzera la partita attuale</button></div></form></dialog>
   <dialog id="backupDialog" class="modal"><div id="backupDialogBody"></div></dialog>
-
-  <dialog id="territoryDialog" class="modal">
-    <div id="territoryDialogBody"></div>
-  </dialog>
-
-  <script src="app-loader.js?v=36"></script>
+  <dialog id="territoryDialog" class="modal"><div id="territoryDialogBody"></div></dialog>
+  <script src="app-loader.js?v=37"></script>
 </body>
 </html>

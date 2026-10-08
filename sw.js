@@ -1,6 +1,6 @@
-const CACHE='frontiere-v3-3-app-v36';
+const CACHE='frontiere-v3-4-app-v37';
 const GEO_CACHE='frontiere-v3-3-geo';
-const ASSETS=['./','./index.html','./app-loader.js?v=36','./manifest.webmanifest','./icon.svg','./styles-b64.txt','./gparts-0.txt','./gparts-1.txt','./gparts-2.txt','./gparts-3.txt','./gparts-4.txt','./gparts-5.txt'];
+const ASSETS=['./','./index.html','./app-loader.js?v=37','./manifest.webmanifest','./icon.svg','./styles-b64.txt','./gparts-0.txt','./gparts-1.txt','./gparts-2.txt','./gparts-3.txt','./gparts-4.txt','./gparts-5.txt'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('frontiere-v3-')&&k!==CACHE&&k!==GEO_CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);const geographic=['media.githubusercontent.com','raw.githubusercontent.com','www.geoboundaries.org'].includes(u.hostname);if(geographic){e.respondWith(caches.open(GEO_CACHE).then(async c=>{const hit=await c.match(e.request);if(hit)return hit;try{const r=await fetch(e.request);if(r.ok)c.put(e.request,r.clone());return r}catch(err){return hit||Response.error()}}));return;}if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./index.html'))));});
